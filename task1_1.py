@@ -1,3 +1,6 @@
+import random
+
+
 def legitimate_channel(input_word):
     possible_errors = ["0000000", "0000001", "0000010",
                        "0000100", "0001000", "0010000", "0100000", "1000000"]
@@ -12,14 +15,20 @@ def legitimate_channel(input_word):
 
 
 def eavesdropper_channel(input_word):
-    possible_errors = ["0000000", "0000001", "0000010", "0000100", "0001000", "0010000", "0100000", "1000000",
-                       "1101000", "1110000"]
     output_words = []
 
-    for error in possible_errors:
-        output_word = ''.join(str(int(bit_a) ^ int(bit_b))
-                              for bit_a, bit_b in zip(input_word, error))
-        output_words.append(output_word)
+    # Randomly choose how many errors to introduce (up to 3)
+    num_errors = random.randint(0, 3)
+
+    for _ in range(num_errors):
+        # Randomly choose the position of the error
+        error_position = random.randint(0, 6)
+
+        # Flip the bit at the chosen position
+        input_word = input_word[:error_position] + str(
+            int(not int(input_word[error_position]))) + input_word[error_position+1:]
+
+    output_words.append(input_word)
 
     return output_words
 
