@@ -16,17 +16,13 @@ def legitimate_channel(input_word):
 
 def eavesdropper_channel(input_word):
     output_words = []
-
-    # Randomly choose how many errors to introduce (up to 3)
     num_errors = random.randint(0, 3)
 
-    for _ in range(num_errors):
-        # Randomly choose the position of the error
-        error_position = random.randint(0, 6)
+    for _ in range(num_errors)
+    error_position = random.randint(0, 6)
 
-        # Flip the bit at the chosen position
-        input_word = input_word[:error_position] + str(
-            int(not int(input_word[error_position]))) + input_word[error_position+1:]
+    input_word = input_word[:error_position] + str(
+        int(not int(input_word[error_position]))) + input_word[error_position+1:]
 
     output_words.append(input_word)
 
